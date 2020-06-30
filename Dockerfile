@@ -1,4 +1,4 @@
-FROM python:3.8.3-alpine
+FROM python:3.8.3-slim
 RUN apk update && \
     apk add make automake gcc g++ subversion python3-dev
 ADD . /code
