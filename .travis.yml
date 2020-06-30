@@ -13,12 +13,13 @@ before_install:
 
 script:
     - python test.py 
-    
+
 deploy:
     provider: script 
     script:
         docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
         docker push registry.heroku.com/$HEROKU_APP_NAME/web;
         heroku run --app $HEROKU_APP_NAME
+    edge: true
     on:
         branch: master
