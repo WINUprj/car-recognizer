@@ -119,6 +119,7 @@ def predict(img_src):
     if model is None:
         model = init()
     
+    # get appropriate word from list defined
     pred = model.predict(img_src)
     pred_ind = np.argmax(pred)
     brand = brand_name[pred_ind]
