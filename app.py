@@ -1,31 +1,36 @@
-from flask import Flask, request, abort
 import io 
 from io import BytesIO
 import json
+import re
+import sys
+import os
+
+from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import ImageMessage, MessageEvent, TextMessage, TextSendMessage
 import numpy as np
-import os
 from skimage.io import imread
 from skimage.transform import resize
 from PIL import Image
-import re
-import sys
 
 from load import init
 
+# directory to save images
 IMAGE_DIR = './static/images'
 if not os.path.isdir(IMAGE_DIR):
     os.makedirs(IMAGE_DIR)
 
+# direct path to images saved
 IMAGE_PATH = './static/images/{}.jpg'
 
 app = Flask(__name__)
 
+# get access token and channel secret 
 LINE_CHANNEL_ACCESS_TOKEN = os.environ['LINE_CHANNEL_ACCESS_TOKEN']
 LINE_CHANNEL_SECRET = os.environ['LINE_CHANNEL_SECRET']
 
+# create line bot api and webhook handler
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 web_handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
@@ -36,6 +41,7 @@ header = {
 
 model = init()
 
+# simple check for server failures
 @app.route('/')
 def index():
     return 'hello world'
@@ -55,14 +61,8 @@ def callback():
     
     return 'Verified'
 
-@web_handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token, 
-        TextSendMessage(text=event.message.text)
-    )
-
 def reply_message(event, messages):
+    # reply message from cnn model
     line_bot_api.reply_message(
         event.reply_token,
         messages=messages
@@ -70,7 +70,7 @@ def reply_message(event, messages):
 
 @web_handler.add(MessageEvent, message=ImageMessage)
 def handle_image(event):
-
+    # get message id from image sent and add new path for it
     message_id = event.message.id 
     image_path = IMAGE_PATH.format(message_id)
     getImage(message_id, image_path)
