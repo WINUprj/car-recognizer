@@ -75,28 +75,33 @@ def handle_image(event):
     image_path = IMAGE_PATH.format(message_id)
     getImage(message_id, image_path)
 
+    # get result message 
     img_text = get_result(img_path=image_path)
 
     messages = [
+        # reply result 
         TextSendMessage(text=img_text)
     ]
 
     reply_message(event, messages)
 
 def getImage(message_id, image_path):
+    # write out image
     message_content = line_bot_api.get_message_content(message_id)
     with open(image_path, 'wb') as img:
         for chunk in message_content.iter_content():
             img.write(chunk)
 
 def get_result(img_path):
-
+    # read image from path
     img = imread(img_path)
 
+    # check image is successfully loaded
     if img is None:
         print('Image not open')
 
-    img = img[10:len(img)-10, :]
+    # preprocess image and predict result 
+    img = img[20:len(img)-20, :]
     img = resize(img, (224, 224))
     img = np.asarray(img) / 225.0
     img = np.expand_dims(img, axis=0)
