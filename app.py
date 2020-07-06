@@ -112,7 +112,7 @@ def get_result(img_path):
 def predict(img_src):
     brand = ''
     # 'Lamborghini', 'Ferrari', 'Bugatti', 'Rolls Royce', 'McLaren'
-    brand_name = ['Ferrari', 'Bugatti', 'Rolls Royce', 'McLaren', 'Lamborghini']
+    brand_name = ['McLaren', 'Lamborghini', 'Bugatti', 'Ferrari', 'Rolls Royce']
     global model
 
     # if model is unloaded, initialize the model
