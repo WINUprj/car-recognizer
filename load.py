@@ -9,6 +9,7 @@ def init():
 
     print('Model loaded successfully')
 
+    # compile model extracted from json and h5 file
     loaded_model.compile(loss='sparse_categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
     return loaded_model
