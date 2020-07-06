@@ -1,6 +1,4 @@
 FROM python:3.8.3-slim
-# RUN apk update && \
-#     apk add make automake gcc g++ subversion python3-dev
 RUN mkdir /code
 ADD ./requirements.txt /code
 WORKDIR /code
