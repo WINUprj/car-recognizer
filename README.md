@@ -1,8 +1,6 @@
 # car-recognizer
-<<<<<<< HEAD
 ![alt text](img/car-recognizer.gif)
-=======
->>>>>>> 3736cd6828f8a1100cf6028a1b1647aa41a4dcef
+===========
 ### Project overview
 Car recognition chat bot using LINE API. It automatically recognizes and replies correct brand of the car in the images sent by the user. 
 
@@ -16,8 +14,4 @@ Many articles on the internet describes how to create a chat bot with LINE API, 
     * Travis CI for CI tool (automated testing)
     * heroku for deploy 
   * Docker/docker-compose to integrate testing/deploy environment
-<<<<<<< HEAD
   * Used tensorflow/keras to construct prediction model of images (fine-tuned model with Xception-Net)
-=======
-  * Used tensorflow/keras to construct prediction model of images (fine-tuned model with Xception-Net)
->>>>>>> 3736cd6828f8a1100cf6028a1b1647aa41a4dcef
