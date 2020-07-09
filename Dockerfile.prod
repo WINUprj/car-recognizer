@@ -5,4 +5,5 @@ WORKDIR /code
 RUN pip install -r requirements.txt
 RUN export FLASK_ENV=development
 RUN export FLASK_APP='app.py'
+# added command to run app
 CMD ["python", "app.py"]

@@ -1,3 +1,7 @@
+# Copied part of testing code in line-bot-sdk-python 
+# licenced by: louis70109
+# source: https://github.com/line/line-bot-sdk-python/blob/master/tests/test_exceptions.py
+
 from __future__ import unicode_literals, absolute_import
 
 import unittest

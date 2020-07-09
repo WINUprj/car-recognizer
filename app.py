@@ -111,7 +111,6 @@ def get_result(img_path):
 
 def predict(img_src):
     brand = ''
-    # 'Lamborghini', 'Ferrari', 'Bugatti', 'Rolls Royce', 'McLaren'
     brand_name = ['McLaren', 'Lamborghini', 'Bugatti', 'Ferrari', 'Rolls Royce']
     global model
 
@@ -119,7 +118,7 @@ def predict(img_src):
     if model is None:
         model = init()
     
-    # get appropriate word from list defined
+    # get appropriate brand name from list defined
     pred = model.predict(img_src)
     pred_ind = np.argmax(pred)
     brand = brand_name[pred_ind]
